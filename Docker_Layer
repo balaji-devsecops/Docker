@@ -1,0 +1,9 @@
+Docker Layers:
+
+1. Base Image Layer
+   The first layer of a Docker image is often the base OS layer (e.g., ubuntu, alpine, etc.). This layer includes the operating system and is the foundation upon which additional layers are built.
+2. Internidiate Layer
+   Each subsequent layer represents an instruction in the Dockerfile. For example, running a RUN command to install software packages creates a new layer on top of the base image.
+   Layers are read-only. Once a layer is created, it cannot be changed. If you change an instruction in the Dockerfile and rebuild the image, Docker creates a new layer for that instruction.
+3. writable container Layer
+   When a container is launched from an image, Docker uses a union filesystem to stack all read-only image layers and then adds a writable layer on top. This topmost layer is where all changes are made during the container's runtime. If files from the read-only layers are modified or deleted, the changes are reflected in this writable layer.
